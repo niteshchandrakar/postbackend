@@ -1,6 +1,7 @@
 const express=require("express")
 const userRouter=require("./routes/user.routes")
 const postRouter=require("./routes/post.routes")
+require("dotenv").config()
 const cors=require("cors")
 const connection=require("./db")
 const app=express()
@@ -13,7 +14,7 @@ app.get("/",(req,res)=>{
 app.use("/users",userRouter)
 app.use("/posts",postRouter)
 
-app.listen(8080,async()=>{
+app.listen(process.env.port,async()=>{
 try{
 await connection
 console.log("connected to db")
